@@ -1,5 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="971b17ee-3757-4704-95d5-0fd039419b5b" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/weapon_system.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app00_Reg_Log/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app00_Reg_Log/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app00_Reg_Log/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app00_Reg_Log/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app00_Reg_Log/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app00_Reg_Log/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app00_Reg_Log/templates/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app00_Reg_Log/templates/register_success.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app00_Reg_Log/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app00_Reg_Log/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app01_admin/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app01_admin/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app01_admin/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app01_admin/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app01_admin/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app01_admin/templates/admin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app01_admin/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app01_admin/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app02_user/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app02_user/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app02_user/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app02_user/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app02_user/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app02_user/templates/user.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app02_user/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../app02_user/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../db.sqlite3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/b9d9e1fe-7abf-4813-b72e-c0ab90cf5933.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/b9d9e1fe-7abf-4813-b72e-c0ab90cf5933/storage_v2/_src_/schema/weapon_system.slXBiw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sql.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sql.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/css/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/js/jquery-3.6.0.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/css/bootstrap(1).css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/css/bootstrap-theme(1).css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/css/bootstrap-theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/css/bootstrap-theme.css(1).map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/css/bootstrap-theme.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/css/bootstrap-theme.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/css/bootstrap-theme.min.css(1).map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/css/bootstrap-theme.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/css/bootstrap.css(1).map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/css/bootstrap.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/css/bootstrap.min(1).css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/css/bootstrap.min.css(1).map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/css/bootstrap.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/fonts/glyphicons-halflings-regular(1).svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/fonts/glyphicons-halflings-regular(1).ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/fonts/glyphicons-halflings-regular(1).woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/fonts/glyphicons-halflings-regular(1).woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/js/bootstrap(1).js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/js/bootstrap.min(1).js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/js/npm(1).js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../static/plugins/bootstrap-3.4.1/js/npm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../weapon_system/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../weapon_system/asgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../weapon_system/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../weapon_system/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../weapon_system/wsgi.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
   <component name="ProjectId" id="2q4MnxaIQkCHOyHpEyQOmCP81ja" />
-  <component name="PropertiesComponent">{}</component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenDatabaseViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/zhengyanglu"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql_aurora_aws"
+    ]
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
 </project>

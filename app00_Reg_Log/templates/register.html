@@ -1,10 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/css/login.css">
+    <link rel="stylesheet" href="/static/plugins/bootstrap-3.4.1">
+    <style>
+        .account {
+            width: 325px;
+            height: 340px;
+            border: 1px solid gray;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: 120px;
+            padding: 20px 40px;
+            border-radius: 15px;
+            box-shadow: 5px 5px 13px grey;
+            background-color: #AEEEEE;
+        }
+    </style>
 </head>
 <body>
-$END$
+<div class="account">
+    <div style="text-align: center; font-size: 25px; color: #58bc82">
+        武器库用户注册
+    </div>
+    <form class="form" method="post" action="">
+        {% csrf_token %}
+      <span class="input-span">
+        <label for="user_name" class="label">用户名</label>
+        <input type="text" name="user_name" id="user_name"/>
+      </span>
+
+      <span class="input-span">
+        <label for="password" class="label">密码</label>
+        <input type="password" name="password" id="password"/>
+      </span>
+
+        <div style="width: 30px"></div>
+        <input class="submit" type="submit" value="注 册"/>
+        <span class="span">已有账号？ <a href="/">登陆</a></span>
+    </form>
+</div>
+
 </body>
 </html>

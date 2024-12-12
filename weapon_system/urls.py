@@ -17,7 +17,15 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from django.urls import include
+from app00_Reg_Log import views as Reg_Log
+from app02_user import views as user
+
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    # app00
+    path("", Reg_Log.login),
+    path("register", Reg_Log.register),
+    path("user/market", user.market),
+
 ]
