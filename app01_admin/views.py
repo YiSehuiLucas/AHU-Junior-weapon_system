@@ -14,16 +14,16 @@ def warehouse(request):
         # 显示管理仓库中所有武器
         print(admin)
         cursor = connection.cursor()
-        sql = '''SELECT app00_reg_log_admin.factory_id
+        sql = '''SELECT app00_reg_log_admin.warehouse_id
                              from app00_reg_log_admin
                              where admin_name = %s;'''
         cursor.execute(sql, [admin])
-        factory_id = cursor.fetchall()
-        print(factory_id)
-        factory_id = factory_id[0][0]
+        warehouse_id = cursor.fetchall()
+        print(warehouse_id)
+        warehouse_id = warehouse_id[0][0]
 
 
-        print(factory_id)
+        print(warehouse_id)
         cursor = connection.cursor()
         sql = '''SELECT app00_reg_log_warehouse.warehouse_id   as 仓库编号,
                        app00_reg_log_warehouse.warehouse_name as 仓库名,
@@ -38,7 +38,7 @@ def warehouse(request):
                 WHERE app00_reg_log_warehouseweapon.weapon_id = app00_reg_log_weapon.weapon_id
                   AND app00_reg_log_warehouse.warehouse_id = app00_reg_log_warehouseweapon.warehouse_id
                   AND app00_reg_log_warehouse.warehouse_id = %s;'''
-        cursor.execute(sql, int(factory_id))
+        cursor.execute(sql, int(warehouse_id))
         cursor.close()
         rows = cursor.fetchall()  # 获取所有结果
         for row in rows:
@@ -48,21 +48,20 @@ def warehouse(request):
     elif request.method == 'POST':
         admin = request.POST.get('admin')
         cursor = connection.cursor()
-        sql = '''SELECT app00_reg_log_admin.factory_id,
-                        app00_reg_log_admin.warehouse_id
-                                     from app00_reg_log_admin
-                                     where admin_name = %s;'''
+        sql = '''SELECT      app00_reg_log_admin.warehouse_id
+                             from app00_reg_log_admin
+                             where admin_name = %s;'''
         cursor.execute(sql, [admin])
         print(admin)
-        factory_id = cursor.fetchall()
-        warehouse_id = factory_id[0][1]
-        factory_id = factory_id[0][0]
-        print(factory_id)
+        warehouse_id = cursor.fetchall()
+        warehouse_id = warehouse_id[0][0]
+        print(warehouse_id)
         Wtype = request.POST.get('type')
         price = request.POST.get('price')
         name = request.POST.get('name')
         src = request.POST.get('src')
-        print(f"{Wtype} {price} {name} {src}")
+        factor_id = request.POST.get('fac')
+        print(f"{Wtype} {price} {name} {src}{factor_id}")
         cursor.close()
         cursor = connection.cursor()
         sql = '''INSERT INTO app00_reg_log_weapon(weapon_type, weapon_price, name, src)
@@ -82,7 +81,7 @@ def warehouse(request):
         cursor = connection.cursor()
         sql = '''INSERT INTO app00_reg_log_factoryweapon(factory_id, weapon_id)
                  VALUE (%s, %s);'''
-        cursor.execute(sql, [factory_id, new_id])
+        cursor.execute(sql, [factor_id, new_id])
         connection.commit()
         cursor.close()
 
@@ -90,12 +89,9 @@ def warehouse(request):
         sql = '''    INSERT INTO app00_reg_log_warehouseweapon(warehouse_id, weapon_id)
                     VALUES (%s, %s)
                     ON DUPLICATE KEY UPDATE  weapon_id = VALUES(weapon_id);'''
-        cursor.execute(sql, [factory_id, warehouse_id])
+        cursor.execute(sql, (int(warehouse_id), int(new_id)))
         connection.commit()
         cursor.close()
-
-
-
 
         return HttpResponse("入库成功")
 

@@ -102,7 +102,8 @@ class Users(AbstractBaseUser):
 class Admin(AbstractBaseUser):
     admin_name = models.CharField(max_length=20, unique=True, primary_key=True)
     admin_pwd = models.CharField(max_length=128)  # Use Django's hashed password system
-    factory = models.ForeignKey(Factory, null=True, blank=True, on_delete=models.SET_NULL)
+    warehouse = models.ForeignKey(Warehouse, null=True, blank=True, on_delete=models.CASCADE)
+    #SET_NULL
 
     objects = UserManager()
 
