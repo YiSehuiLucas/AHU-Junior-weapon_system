@@ -58,10 +58,10 @@ class Order(models.Model):
 
     order_id = models.AutoField(primary_key=True)
     weapon = models.ForeignKey(Weapon, null=True, blank=True, on_delete=models.SET_NULL)
-    order_date = models.DateTimeField(null=True, blank=True)
-    statement = models.CharField(max_length=10, choices=STATUS_CHOICES, null=True, blank=True)
-    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
-    warehouse = models.ForeignKey(Warehouse, null=True, blank=True, on_delete=models.SET_NULL)
+    order_date = models.DateTimeField(null=True, blank=True, auto_now_add=True)
+    statement = models.CharField(max_length=255, choices=STATUS_CHOICES, null=True, blank=True)
+    user_name = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    warehouse_id = models.ForeignKey(Warehouse, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return f"Order {self.order_id}"
@@ -101,7 +101,7 @@ class Users(AbstractBaseUser):
 
 class Admin(AbstractBaseUser):
     admin_name = models.CharField(max_length=20, unique=True, primary_key=True)
-    # admin_pwd = models.CharField(max_length=128)  # Use Django's hashed password system
+    admin_pwd = models.CharField(max_length=128)  # Use Django's hashed password system
     factory = models.ForeignKey(Factory, null=True, blank=True, on_delete=models.SET_NULL)
 
     objects = UserManager()

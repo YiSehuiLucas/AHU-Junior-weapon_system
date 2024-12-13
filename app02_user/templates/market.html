@@ -1,10 +1,278 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href={% static '/plugins/bootstrap-3.4.1/css/bootstrap.css' %}>
+    <style>
+        .tab {
+            width: 750px;
+            height: 1000px;
+            border: 1px solid gray;
+            margin: 50px auto auto;
+        }
+
+        .weapon_list {
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        th {
+            width: 100px;
+            height: 40px;
+            text-align: center;
+        }
+
+        tr {
+            text-align: center;
+            font-size: 15px;
+            vertical-align: middle;
+            border: none;
+
+        }
+
+        /* From Uiverse.io by Allyhere */
+        .btn-donate {
+            --clr-font-main: hsla(0 0% 20% / 100);
+            --btn-bg-1: hsla(194 100% 69% / 1);
+            --btn-bg-2: hsla(217 100% 56% / 1);
+            --btn-bg-color: hsla(360 100% 100% / 1);
+            --radii: 0.5em;
+            cursor: pointer;
+            padding: 0.9em 1.4em;
+            min-width: 120px;
+            min-height: 44px;
+            font-size: var(--size, 1rem);
+            font-weight: 500;
+            transition: 0.8s;
+            background-size: 280% auto;
+            background-image: linear-gradient(
+                    325deg,
+                    var(--btn-bg-2) 0%,
+                    var(--btn-bg-1) 55%,
+                    var(--btn-bg-2) 90%
+            );
+            border: none;
+            border-radius: var(--radii);
+            color: var(--btn-bg-color);
+            box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5),
+            0px 5px 5px -1px rgba(58, 125, 233, 0.25),
+            inset 4px 4px 8px rgba(175, 230, 255, 0.5),
+            inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+        }
+
+        .btn-donate:hover {
+            background-position: right top;
+        }
+
+        .btn-donate:is(:focus, :focus-visible, :active) {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--btn-bg-color),
+            0 0 0 6px var(--btn-bg-2);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .btn-donate {
+                transition: linear;
+            }
+        }
+
+
+        /* From Uiverse.io by alexroumi */
+        /* From Uiverse.io by namecho */
+        button,
+        button::after {
+            padding: 16px 20px;
+            font-size: 18px;
+            background: linear-gradient(45deg, transparent 5%, #ff013c 5%);
+            border: 0;
+            color: #fff;
+            letter-spacing: 3px;
+            line-height: 1;
+            box-shadow: 6px 0px 0px #00e6f6;
+            outline: transparent;
+            position: relative;
+        }
+
+        button::after {
+            --slice-0: inset(50% 50% 50% 50%);
+            --slice-1: inset(80% -6px 0 0);
+            --slice-2: inset(50% -6px 30% 0);
+            --slice-3: inset(10% -6px 85% 0);
+            --slice-4: inset(40% -6px 43% 0);
+            --slice-5: inset(80% -6px 5% 0);
+            content: "HOVER ME";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 3%, #00e6f6 3%, #00e6f6 5%, #ff013c 5%);
+            text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
+            clip-path: var(--slice-0);
+        }
+
+        button:hover::after {
+            animation: 1s glitch;
+            animation-timing-function: steps(2, end);
+        }
+
+        @keyframes glitch {
+            0% {
+                clip-path: var(--slice-1);
+                transform: translate(-20px, -10px);
+            }
+
+            10% {
+                clip-path: var(--slice-3);
+                transform: translate(10px, 10px);
+            }
+
+            20% {
+                clip-path: var(--slice-1);
+                transform: translate(-10px, 10px);
+            }
+
+            30% {
+                clip-path: var(--slice-3);
+                transform: translate(0px, 5px);
+            }
+
+            40% {
+                clip-path: var(--slice-2);
+                transform: translate(-5px, 0px);
+            }
+
+            50% {
+                clip-path: var(--slice-3);
+                transform: translate(5px, 0px);
+            }
+
+            60% {
+                clip-path: var(--slice-4);
+                transform: translate(5px, 10px);
+            }
+
+            70% {
+                clip-path: var(--slice-2);
+                transform: translate(-10px, 10px);
+            }
+
+            80% {
+                clip-path: var(--slice-5);
+                transform: translate(20px, -10px);
+            }
+
+            90% {
+                clip-path: var(--slice-1);
+                transform: translate(-10px, 0px);
+            }
+
+            100% {
+                clip-path: var(--slice-1);
+                transform: translate(0);
+            }
+        }
+
+    </style>
 </head>
-<body>
-afdadasd
+{#导航条#}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" onclick="location.reload()">武 器</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                {#                <li class="active"><a href="#">商 城<span class="sr-only">(current)</span></a></li>#}
+                <li><a href="#">商 城</a></li>
+                <li><a href="#">订 单</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">登 出</a></li>
+                <li class="dropdown">
+                    <a class="navbar-brand" href="#">个人信息</a>
+            </ul>
+            </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+{#武器列表#}
+<h3 style="text-align: center">在售武器</h3>
+<div class="weapon_list">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th style="text-align: center">ID</th>
+            <th>名称</th>
+            <th>类型</th>
+            <th>价格</th>
+            <th>发货地</th>
+            <th>图片</th>
+            <th>购买</th>
+        </tr>
+        </thead>
+
+        {% for item in list %}
+            <form method="POST" action="{% url 'user_market' %}">
+            {% csrf_token %}
+            <tbody>
+            <tr>
+                <td>
+{#                    武器id#}
+                    <input type="hidden" name="item_0" value="{{ item.0 }}">
+                    <button type="button" class="btn-donate" style="margin-top: 13px; font-size: 20px">{{ item.0 }}</button>
+                </td>
+                <td>
+{#                    武器名#}
+                    <input type="hidden" name="item_2" value="{{ item.2 }}">
+                    <button type="button" class="btn-donate" style="margin-top: 13px; font-size: 15px">{{ item.2 }}</button>
+                </td>
+                <td>
+{#                    武器类型#}
+                    <input type="hidden" name="item_1" value="{{ item.1 }}">
+                    <button type="button" class="btn-donate" style="margin-top: 13px; font-size: 15px">{{ item.1 }}</button>
+                </td>
+                <td>
+{#                    武器价格#}
+                    <input type="hidden" name="item_3" value="{{ item.3 }}">
+                    <button type="button" class="btn-donate" style="margin-top: 13px; font-size: 20px">{{ item.3 }}</button>
+                </td>
+                <td>
+{#                    发货地#}
+                    <input type="hidden" name="item_4" value="{{ item.4 }}">
+                    <button type="button" class="btn-donate" style="margin-top: 13px; font-size: 15px">{{ item.4 }}</button>
+                </td>
+                <td>
+                    <img src="{{ item.5 }}" alt="" style="height: 80px; width: 150px">
+                </td>
+                <td>
+                    <button style="height: 80px"> 购买
+                    </button>
+                </td>
+                    <input type="hidden" name="user" value="{{ user }}">
+                    <input type="hidden" name="item_6" value="{{ item.6 }}">
+            </tr>
+            </tbody>
+            </form>
+        {% endfor %}
+    </table>
+</div>
 </body>
 </html>

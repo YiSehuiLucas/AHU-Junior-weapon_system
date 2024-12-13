@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from app00_Reg_Log import views as Reg_Log
+from app01_admin import views as admin
 from app02_user import views as user
 
 
@@ -26,6 +27,10 @@ urlpatterns = [
     # app00
     path("", Reg_Log.login),
     path("register", Reg_Log.register),
-    path("user/market", user.market),
-
+    # app02 user
+    path("user/market", user.market, name='user_market'),
+    path("user/orders", user.orders, name='user_orders'),
+    # app03 admin
+    path("admin/warehouse", admin.warehouse, name='admin_warehouse'),
+    path("admin/orders", admin.orders, name='admin_orders')
 ]

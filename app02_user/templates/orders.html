@@ -1,0 +1,522 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href={% static '/plugins/bootstrap-3.4.1/css/bootstrap.css' %}>
+    <style>
+        /* From Uiverse.io by Prince4fff */
+        .card p {
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #666;
+        }
+
+        .card p.small {
+            font-size: 14px;
+        }
+
+        .go-corner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            overflow: hidden;
+            top: 0;
+            right: 0;
+            background-color: #00838d;
+            border-radius: 0 4px 0 32px;
+        }
+
+        .go-arrow {
+            margin-top: -4px;
+            margin-right: -4px;
+            color: white;
+            font-family: courier, sans;
+        }
+
+        .card1 {
+            display: block;
+            position: relative;
+            max-width: 262px;
+            background-color: #f2f8f9;
+            border-radius: 4px;
+            padding: 32px 24px;
+            margin: 12px;
+            text-decoration: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .card1:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: -16px;
+            right: -16px;
+            background: #00838d;
+            height: 32px;
+            width: 32px;
+            border-radius: 32px;
+            transform: scale(1);
+            transform-origin: 50% 50%;
+            transition: transform 0.25s ease-out;
+        }
+
+        .card1:hover:before {
+            transform: scale(21);
+        }
+
+        .card1:hover p {
+            transition: all 0.3s ease-out;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .card1:hover h3 {
+            transition: all 0.3s ease-out;
+            color: #fff;
+        }
+
+        .card2 {
+            display: block;
+            top: 0px;
+            position: relative;
+            max-width: 262px;
+            background-color: #f2f8f9;
+            border-radius: 4px;
+            padding: 32px 24px;
+            margin: 12px;
+            text-decoration: none;
+            z-index: 0;
+            overflow: hidden;
+            border: 1px solid #f2f8f9;
+        }
+
+        .card2:hover {
+            transition: all 0.2s ease-out;
+            box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
+            top: -4px;
+            border: 1px solid #ccc;
+            background-color: white;
+        }
+
+        .card2:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: -16px;
+            right: -16px;
+            background: #00838d;
+            height: 32px;
+            width: 32px;
+            border-radius: 32px;
+            transform: scale(2);
+            transform-origin: 50% 50%;
+            transition: transform 0.15s ease-out;
+        }
+
+        .card2:hover:before {
+            transform: scale(2.15);
+        }
+
+        .card3 {
+            display: block;
+            top: 0px;
+            position: relative;
+            max-width: 262px;
+            background-color: #f2f8f9;
+            border-radius: 4px;
+            padding: 32px 24px;
+            margin: 12px;
+            text-decoration: none;
+            overflow: hidden;
+            border: 1px solid #f2f8f9;
+        }
+
+        .card3 .go-corner {
+            opacity: 0.7;
+        }
+
+        .card3:hover {
+            border: 1px solid #00838d;
+            box-shadow: 0px 0px 999px 999px rgba(255, 255, 255, 0.5);
+            z-index: 500;
+        }
+
+        .card3:hover p {
+            color: #00838d;
+        }
+
+        .card3:hover .go-corner {
+            transition: opactiy 0.3s linear;
+            opacity: 1;
+        }
+
+        .card4 {
+            display: block;
+            top: 0px;
+            position: relative;
+            max-width: 262px;
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 32px 24px;
+            margin: 12px;
+            text-decoration: none;
+            overflow: hidden;
+            border: 1px solid #ccc;
+        }
+
+        .card4 .go-corner {
+            background-color: #00838d;
+            height: 100%;
+            width: 16px;
+            padding-right: 9px;
+            border-radius: 0;
+            transform: skew(6deg);
+            margin-right: -36px;
+            align-items: start;
+            background-image: linear-gradient(-45deg, #8f479a 1%, #dc2a74 100%);
+        }
+
+        .card4 .go-arrow {
+            transform: skew(-6deg);
+            margin-left: -2px;
+            margin-top: 9px;
+            opacity: 0;
+        }
+
+        .card4:hover {
+            border: 1px solid #cd3d73;
+        }
+
+        .card4 h3 {
+            margin-top: 8px;
+        }
+
+        .card4:hover .go-corner {
+            margin-right: -12px;
+        }
+
+        .card4:hover .go-arrow {
+            opacity: 1;
+        }
+
+        .tab {
+            width: 750px;
+            height: 1000px;
+            border: 1px solid gray;
+            margin: 50px auto auto;
+        }
+
+        .weapon_list {
+            width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        th {
+            width: 100px;
+            height: 40px;
+            text-align: center;
+        }
+
+        tr {
+            text-align: center;
+            font-size: 15px;
+            vertical-align: middle;
+            border: none;
+
+        }
+
+        /* From Uiverse.io by Allyhere */
+        .btn-donate {
+            --clr-font-main: hsla(0 0% 20% / 100);
+            --btn-bg-1: hsla(194 100% 69% / 1);
+            --btn-bg-2: hsla(217 100% 56% / 1);
+            --btn-bg-color: hsla(360 100% 100% / 1);
+            --radii: 0.5em;
+            cursor: pointer;
+            padding: 0.9em 1.4em;
+            min-width: 90px;
+            min-height: 20px;
+            font-size: var(--size, 1rem);
+            font-weight: 500;
+            transition: 0.8s;
+            background-size: 280% auto;
+            background-image: linear-gradient(
+                    325deg,
+                    var(--btn-bg-2) 0%,
+                    var(--btn-bg-1) 55%,
+                    var(--btn-bg-2) 90%
+            );
+            border: none;
+            border-radius: var(--radii);
+            color: var(--btn-bg-color);
+            box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5),
+            0px 5px 5px -1px rgba(58, 125, 233, 0.25),
+            inset 4px 4px 8px rgba(175, 230, 255, 0.5),
+            inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+        }
+
+        .btn-donate:hover {
+            background-position: right top;
+        }
+
+        .btn-donate:is(:focus, :focus-visible, :active) {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--btn-bg-color),
+            0 0 0 6px var(--btn-bg-2);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .btn-donate {
+                transition: linear;
+            }
+        }
+
+
+        /* From Uiverse.io by alexroumi */
+        /* From Uiverse.io by namecho */
+        button,
+        button::after {
+            padding: 16px 20px;
+            font-size: 18px;
+            background: linear-gradient(45deg, transparent 5%, #ff013c 5%);
+            border: 0;
+            color: #fff;
+            letter-spacing: 3px;
+            line-height: 1;
+            box-shadow: 6px 0px 0px #00e6f6;
+            outline: transparent;
+            position: relative;
+        }
+
+        button::after {
+            --slice-0: inset(50% 50% 50% 50%);
+            --slice-1: inset(80% -6px 0 0);
+            --slice-2: inset(50% -6px 30% 0);
+            --slice-3: inset(10% -6px 85% 0);
+            --slice-4: inset(40% -6px 43% 0);
+            --slice-5: inset(80% -6px 5% 0);
+            content: "HOVER ME";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 3%, #00e6f6 3%, #00e6f6 5%, #ff013c 5%);
+            text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #00e6f6;
+            clip-path: var(--slice-0);
+        }
+
+        button:hover::after {
+            animation: 1s glitch;
+            animation-timing-function: steps(2, end);
+        }
+
+        @keyframes glitch {
+            0% {
+                clip-path: var(--slice-1);
+                transform: translate(-20px, -10px);
+            }
+
+            10% {
+                clip-path: var(--slice-3);
+                transform: translate(10px, 10px);
+            }
+
+            20% {
+                clip-path: var(--slice-1);
+                transform: translate(-10px, 10px);
+            }
+
+            30% {
+                clip-path: var(--slice-3);
+                transform: translate(0px, 5px);
+            }
+
+            40% {
+                clip-path: var(--slice-2);
+                transform: translate(-5px, 0px);
+            }
+
+            50% {
+                clip-path: var(--slice-3);
+                transform: translate(5px, 0px);
+            }
+
+            60% {
+                clip-path: var(--slice-4);
+                transform: translate(5px, 10px);
+            }
+
+            70% {
+                clip-path: var(--slice-2);
+                transform: translate(-10px, 10px);
+            }
+
+            80% {
+                clip-path: var(--slice-5);
+                transform: translate(20px, -10px);
+            }
+
+            90% {
+                clip-path: var(--slice-1);
+                transform: translate(-10px, 0px);
+            }
+
+            100% {
+                clip-path: var(--slice-1);
+                transform: translate(0);
+            }
+        }
+
+        /* From Uiverse.io by LilaRest */
+        .card {
+            --bg: #e8e8e8;
+            --contrast: #e2e0e0;
+            --grey: #93a1a1;
+            position: relative;
+            padding: 9px;
+            background-color: var(--bg);
+            border-radius: 35px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        }
+
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: repeating-conic-gradient(var(--bg) 0.0000001%, var(--grey) 0.000104%) 60% 60%/600% 600%;
+            filter: opacity(10%) contrast(105%);
+        }
+
+        .card-inner {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            width: 50px;
+            height: 50px;
+            background-color: var(--contrast);
+            border-radius: 30px;
+            /* Content style */
+            font-size: 20px;
+            font-weight: 900;
+            color: #c7c4c4;
+            text-align: center;
+            font-family: monospace;
+        }
+
+    </style>
+</head>
+{#导航条#}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" onclick="location.reload()">武 器</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                {#                <li class="active"><a href="#">商 城<span class="sr-only">(current)</span></a></li>#}
+                <li><a href="#">商 城</a></li>
+                <li><a href="#">订 单</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">登 出</a></li>
+                <li class="dropdown">
+                    <a class="navbar-brand" href="#">个人信息</a>
+            </ul>
+            </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+{#武器列表#}
+<h3 style="text-align: center">您 的 订 单</h3>
+<div class="weapon_list">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th style="text-align: center">订单ID</th>
+            <th>武器号</th>
+            <th>下单时间</th>
+            <th>订单状态</th>
+            <th>发货地</th>
+            <th>武器类型</th>
+            <th>价格</th>
+            <th>武器名</th>
+            <th>图像</th>
+            <th>撤销订单</th>
+        </tr>
+        </thead>
+
+        {% for item in list %}
+            <tbody>
+            <td>
+                <div class="card">
+                    <div class="card-overlay"></div>
+                    <div class="card-inner">{{ item.0 }}</div>
+                </div>
+                {#                    <input type="hidden" name="item_0" value="{{ item.0 }}">#}
+                {#                    <button type="button" class="btn-donate" style="margin-top: 13px; font-size: 20px">{{ item.0 }}</button>#}
+            </td>
+            <td>
+                <input type="hidden" name="item_0" value="{{ item.1 }}">
+                <button type="button" class="btn-donate" style="margin-top: 7px; font-size: 15px">{{ item.1 }}</button>
+            </td>
+            <td><input type="hidden" name="item_0" value="{{ item.2 }}">
+                <button type="button" class="btn-donate" style="margin-top: 7px; font-size: 10px; width: 27px">{{ item.2 }}</button>
+            </td>
+            <td><input type="hidden" name="item_0" value="{{ item.3 }}">
+                <button type="button" class="btn-donate" style="margin-top: 7px; font-size: 15px">{{ item.3 }}</button>
+            </td>
+            <td><input type="hidden" name="item_0" value="{{ item.4 }}">
+                <button type="button" class="btn-donate" style="margin-top: 7px; font-size: 15px">{{ item.4 }}</button>
+            </td>
+            <td><input type="hidden" name="item_0" value="{{ item.5 }}">
+                <button type="button" class="btn-donate" style="margin-top: 7px; font-size: 15px">{{ item.5 }}</button>
+            </td>
+            <td><input type="hidden" name="item_0" value="{{ item.6 }}">
+                <button type="button" class="btn-donate" style="margin-top: 7px; font-size: 12px; width: 40px">{{ item.6 }}</button>
+            </td>
+            <td><input type="hidden" name="item_0" value="{{ item.7 }}">
+                <button type="button" class="btn-donate" style="margin-top: 7px; font-size: 10px">{{ item.7 }}</button>
+            </td>
+            <td>
+                <img src="{{ item.8 }}" alt="" style="height: 80px; width: 150px">
+
+            </td>
+            <td>
+                <form method="POST" action="{% url 'user_orders' %}">
+                    {% csrf_token %}
+                  <input type="hidden" name="statement" value="{{ item.3 }}">
+                    <input type="hidden" name="order_id" value="{{ item.0 }}">
+                  <button type="submit" class="btn-donate" style="margin-top: 13px; font-size: 15px">取消</button>
+                </form>
+            </td>
+            </tbody>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>
