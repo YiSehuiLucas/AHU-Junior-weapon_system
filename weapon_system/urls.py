@@ -32,5 +32,7 @@ urlpatterns = [
     path("user/orders", user.orders, name='user_orders'),
     # app03 admin
     path("admin/warehouse", admin.warehouse, name='admin_warehouse'),
-    path("admin/orders", admin.orders, name='admin_orders')
+    path("admin/orders", admin.orders, name='admin_orders'),
+    # static
+    path("admin/deliver/goods/successful", admin.deliver_goods_successful, name='"deliver_goods_successful')
 ]

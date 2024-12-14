@@ -123,7 +123,15 @@ def orders(request):
         order_list = cursor.fetchall()
         cursor.close()
         print(order_list)
-        return render(request, 'admin_orders.html', {'order_list': order_list})
+        return render(request, 'admin_orders.html', {'order_list': order_list, 'admin': admin})
 
-    # elif request.method == 'POST'
+    elif request.method == 'POST':
+        admin = request.POST.get()
+        print(admin)
+        return HttpResponse("asda")
 
+@require_http_methods(['GET', 'POST'])
+def deliver_goods_successful(request):
+
+
+    return render(request, 'deliver_goods_successsful.html')

@@ -10,24 +10,23 @@
         .product_show {
             width: 850px;
             height: 600px;
-            {#border: 1px solid gray;#}
-            margin-right: auto;
+        {#border: 1px solid gray;#} margin-right: auto;
             margin-left: auto;
             margin-top: 50px;
         }
-          .inline-block {
+
+        .inline-block {
             display: inline-block;
             width: 222px;
             height: 200px;
-            {#background-color: lightblue;#}
-            margin: 12px;
-          }
+        {#background-color: lightblue;#} margin: 12px;
+        }
 
-          td{
-              text-align: center;
-              vertical-align: middle;
-              line-height: 20px; /*垂直剧中*/
-          }
+        td {
+            text-align: center;
+            vertical-align: middle;
+            line-height: 20px; /*垂直剧中*/
+        }
     </style>
 </head>
 <body>
@@ -49,12 +48,13 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href={% url 'admin_warehouse' %}?admin={{ user }}>仓 库<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href={% url 'admin_warehouse' %}?admin={{ user }}>仓 库<span class="sr-only">(current)</span></a>
+                </li>
                 <li><a href="{% url 'admin_orders' %}?admin={{ user }}">订 单</a></li>
 
 
-                    </ul>
-                </li>
+            </ul>
+            </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -86,10 +86,14 @@
         </tr>
         </thead>
 
+
         {% for item in order_list %}
             <tbody>
             <tr>
+            <form method="POST" action="deliver/goods/successful">
+            {% csrf_token %}
                 <td>{{ item.0 }}</td>
+                <input type="hidden" name="order_id" value={{ admin }}>
                 <td>{{ item.1 }}</td>
                 <td>{{ item.2 }}</td>
                 <td style="color: {% if item.3 == '已处理' %}green{% else %}red{% endif %};">{{ item.3 }}</td>
@@ -103,9 +107,12 @@
                         发货
                     </button>
                 </td>
+            </form>
             </tr>
+
             </tbody>
         {% endfor %}
+
     </table>
 </div>
 </body>
