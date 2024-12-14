@@ -61,42 +61,69 @@ def warehouse(request):
         name = request.POST.get('name')
         src = request.POST.get('src')
         factor_id = request.POST.get('fac')
-        print(f"{Wtype} {price} {name} {src}{factor_id}")
-        cursor.close()
-        cursor = connection.cursor()
-        sql = '''INSERT INTO app00_reg_log_weapon(weapon_type, weapon_price, name, src)
-                 VALUE (%s, %s, %s, %s);'''
-        cursor.execute(sql, [Wtype, price, name, src])
+        if Wtype and price and price and name and src and factor_id:
+            print(f"{Wtype} {price} {name} {src}{factor_id}")
+            cursor.close()
+            cursor = connection.cursor()
+            sql = '''INSERT INTO app00_reg_log_weapon(weapon_type, weapon_price, name, src)
+                     VALUE (%s, %s, %s, %s);'''
+            cursor.execute(sql, [Wtype, price, name, src])
 
-        sql = '''select weapon_id FROM app00_reg_log_weapon
-        where app00_reg_log_weapon.weapon_id not in(
-        select weapon_id
-        From app00_reg_log_factoryweapon)'''
-        cursor.execute(sql)
-        new_id = cursor.fetchall()
-        new_id = new_id[0][0]
-        cursor.close()
-        print(new_id)
+            sql = '''select weapon_id FROM app00_reg_log_weapon
+            where app00_reg_log_weapon.weapon_id not in(
+            select weapon_id
+            From app00_reg_log_factoryweapon)'''
+            cursor.execute(sql)
+            new_id = cursor.fetchall()
+            new_id = new_id[0][0]
+            cursor.close()
+            print(new_id)
 
-        cursor = connection.cursor()
-        sql = '''INSERT INTO app00_reg_log_factoryweapon(factory_id, weapon_id)
-                 VALUE (%s, %s);'''
-        cursor.execute(sql, [factor_id, new_id])
-        connection.commit()
-        cursor.close()
+            cursor = connection.cursor()
+            sql = '''INSERT INTO app00_reg_log_factoryweapon(factory_id, weapon_id)
+                     VALUE (%s, %s);'''
+            cursor.execute(sql, [factor_id, new_id])
+            connection.commit()
+            cursor.close()
 
-        cursor = connection.cursor()
-        sql = '''    INSERT INTO app00_reg_log_warehouseweapon(warehouse_id, weapon_id)
-                    VALUES (%s, %s)
-                    ON DUPLICATE KEY UPDATE  weapon_id = VALUES(weapon_id);'''
-        cursor.execute(sql, (int(warehouse_id), int(new_id)))
-        connection.commit()
-        cursor.close()
+            cursor = connection.cursor()
+            sql = '''    INSERT INTO app00_reg_log_warehouseweapon(warehouse_id, weapon_id)
+                        VALUES (%s, %s)
+                        ON DUPLICATE KEY UPDATE  weapon_id = VALUES(weapon_id);'''
+            cursor.execute(sql, (int(warehouse_id), int(new_id)))
+            connection.commit()
+            cursor.close()
 
-        return HttpResponse("入库成功")
+            return HttpResponse("入库成功")
+        else:
+            return JsonResponse({"error": "数据不完整"}, status=400)
 
 
 @require_http_methods(['GET', 'POST'])
 def orders(request):
-    return render(request, 'admin_orders.html')
+    if request.method == 'GET':
+        admin = request.GET.get('admin')
+        print(admin)
+        cursor = connection.cursor()
+        sql = '''select app00_reg_log_order.order_id      as 订单号,
+                       app00_reg_log_order.weapon_id     as 武器号,
+                       app00_reg_log_order.order_date    as 下单时间,
+                       app00_reg_log_order.statement     as 订单状态,
+                       app00_reg_log_order.user_name     as 用户,
+                       app00_reg_log_order.warehouse_id  as 仓库编号,
+                       app00_reg_log_weapon.weapon_type  as 武器类型,
+                       app00_reg_log_weapon.weapon_price as 价格,
+                       app00_reg_log_weapon.name         as 武器名称,
+                       app00_reg_log_weapon.src          as 图片连接
+                from app00_reg_log_order,
+                     app00_reg_log_weapon
+                WHERE warehouse_id = 1
+                  and app00_reg_log_order.weapon_id = app00_reg_log_weapon.weapon_id;'''
+        cursor.execute(sql)
+        order_list = cursor.fetchall()
+        cursor.close()
+        print(order_list)
+        return render(request, 'admin_orders.html', {'order_list': order_list})
+
+    # elif request.method == 'POST'
 

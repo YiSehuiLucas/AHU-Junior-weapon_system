@@ -18,7 +18,7 @@
         .insert_warehouse {
             border: 1px solid darkslategrey;
             width: 750px;
-            height: 200px;
+            height: 250px;
             margin-right: auto;
             margin-left: auto;
             margin-top: 50px;
@@ -303,7 +303,7 @@
 
 {#入库区#}
 <div class="insert_warehouse">
-    <div style="margin-left: 300px">
+    <div style="margin-left: 320px">
         <button type="button" class="btn" style="margin-top: 10px">
             <strong>武器入库</strong>
             <div id="container-stars">
@@ -321,30 +321,38 @@
         <div style="margin-left: 23px; margin-top: 20px">
 
 
-    <span>
+    <span style="margin: 50px">
+        <span>武器类型</span>
         <input type="text" name="type" class="input" placeholder="武器类型- type">
     </span>
-            <span>
+    <span style="margin-left: 50px">
+        <span>武器价格</span>
         <input type="text" name="price" class="input" placeholder="武器价格 - price">
     </span>
-            <span>
+                            <div style="height: 10px"></div>
+            <div>
+    <span style="margin: 50px">
+        <span>武器名称</span>
         <input type="text" name="name" class="input" placeholder="武器名称 - name">
     </span>
-            <span>
+
+    <span style="margin-left: 50px">
+        <span>武器图片</span>
         <input type="text" name="src" class="input" placeholder="武器图片 - src">
-
     </span>
-            <span>
-        <input type="text" name="fac" class="input" placeholder="工厂ID - fac">
-
-    </span>
-            <input type="hidden" name="admin" value="{{ admin }}">
-            <div style="margin-top: 30px; margin-left: 500px">
-
-                <button>
-                    入 库
-                </button>
+                <div style="height: 10px"></div>
             </div>
+    <span style="margin: 50px">
+        <span >工厂编号</span>
+        <input type="text" name="fac" class="input" placeholder="工厂ID - fac">
+<input type="hidden" name="admin" value="{{ admin }}">
+            <span style="margin-left: 170px">
+                <button>
+                    确 定 入 库
+                </button>
+            </span>
+    </span>
+
         </div>
     </form>
 </div>
