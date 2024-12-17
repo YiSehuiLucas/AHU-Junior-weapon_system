@@ -104,6 +104,16 @@ def orders(request):
     if request.method == 'GET':
         admin = request.GET.get('admin')
         print(admin)
+
+        cursor = connection.cursor()
+        sql = '''select warehouse_id
+                 from app00_reg_log_admin
+                 where admin_name = %s'''
+        cursor.execute(sql, admin)
+        warehouse_id = cursor.fetchall()
+        warehouse_id = warehouse_id[0][0]
+        cursor.close()
+
         cursor = connection.cursor()
         sql = '''select app00_reg_log_order.order_id      as 订单号,
                        app00_reg_log_order.weapon_id     as 武器号,
@@ -117,21 +127,43 @@ def orders(request):
                        app00_reg_log_weapon.src          as 图片连接
                 from app00_reg_log_order,
                      app00_reg_log_weapon
-                WHERE warehouse_id = 1
+                WHERE warehouse_id = %s
                   and app00_reg_log_order.weapon_id = app00_reg_log_weapon.weapon_id;'''
-        cursor.execute(sql)
+        cursor.execute(sql, warehouse_id)
         order_list = cursor.fetchall()
         cursor.close()
         print(order_list)
-        return render(request, 'admin_orders.html', {'order_list': order_list, 'admin': admin})
+        print(admin)
+        return render(request, 'admin_orders.html', {'order_list': order_list,
+                                                     'admin': admin,
+                                                     'warehouse_id': warehouse_id})
 
     elif request.method == 'POST':
-        admin = request.POST.get()
-        print(admin)
-        return HttpResponse("asda")
+        # 出库功能
+        order_id = request.POST.get('order_id')
+        warehouse_id = request.POST.get('warehouse_id')
+        weapon_id = request.POST.get('weapon_id')
+
+        cursor = connection.cursor()
+        sql = '''UPDATE app00_reg_log_order
+                 SET statement='已处理'
+                 where order_id=%s;
+                 '''
+        cursor.execute(sql, order_id)
+        connection.commit()
+        print(warehouse_id)
+        print(weapon_id)
+        cursor.close()
+        cursor = connection.cursor()
+        sql = '''delete from app00_reg_log_warehouseweapon
+                 where weapon_id = %s and
+                 warehouse_id = %s;
+                 '''
+        cursor.execute(sql, [weapon_id, warehouse_id])
+        connection.commit()
+        cursor.close()
+        return render(request, 'deliver_goods_successsful.html')
 
 @require_http_methods(['GET', 'POST'])
-def deliver_goods_successful(request):
-
-
-    return render(request, 'deliver_goods_successsful.html')
+def warehouse_info(request):
+    return render(request, 'warehouse_info.html')

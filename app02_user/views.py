@@ -103,3 +103,5 @@ def orders(request):
             return HttpResponse("已发货")
         else:
             return render(request, '404.html')
+
+

@@ -33,6 +33,7 @@ urlpatterns = [
     # app03 admin
     path("admin/warehouse", admin.warehouse, name='admin_warehouse'),
     path("admin/orders", admin.orders, name='admin_orders'),
+    path("admin/warehouse/info", admin.warehouse_info, name='warehouse_info'),
     # static
-    path("admin/deliver/goods/successful", admin.deliver_goods_successful, name='"deliver_goods_successful')
+    # path("admin/deliver/goods/successful", admin.deliver_goods_successful, name='"deliver_goods_successful')
 ]
