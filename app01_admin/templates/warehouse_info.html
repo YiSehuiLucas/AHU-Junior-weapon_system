@@ -145,9 +145,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href={% url 'admin_warehouse' %}?admin={{ user }}>仓 库</a></li>
-                <li><a href="{% url 'admin_orders' %}?admin={{ user }}">订 单</a></li>
-                <li><a href="{% url 'warehouse_info' %}?admin={{ user }}">仓 库 信 息</a></li>
+                <li><a href={% url 'admin_warehouse' %}?admin={{ admin }}>仓 库</a></li>
+                <li><a href="{% url 'admin_orders' %}?admin={{ admin }}">订 单</a></li>
+                <li><a href="{% url 'warehouse_info' %}?admin={{ admin }}">仓 库 信 息</a></li>
+                <li><a href="{% url 'admin_main' %}?admin={{ admin }}">首 页</a></li>
 
             </ul>
             </li>

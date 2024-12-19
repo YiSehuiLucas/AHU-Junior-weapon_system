@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
+#鲁正扬作品
+#拼音都是CJA干的
 from django.http import JsonResponse
 import random
 import datetime
@@ -21,8 +23,6 @@ def warehouse(request):
         warehouse_id = cursor.fetchall()
         print(warehouse_id)
         warehouse_id = warehouse_id[0][0]
-
-
         print(warehouse_id)
         cursor = connection.cursor()
         sql = '''SELECT app00_reg_log_warehouse.warehouse_id   as 仓库编号,
@@ -41,9 +41,22 @@ def warehouse(request):
         cursor.execute(sql, int(warehouse_id))
         cursor.close()
         rows = cursor.fetchall()  # 获取所有结果
+
+        cursor = connection.cursor()
+        sql = '''SELECT weapon_type as 武器类型,
+                       COUNT(*) as 武器数量
+                FROM app00_reg_log_warehouse, app00_reg_log_warehouseweapon, app00_reg_log_weapon
+                WHERE app00_reg_log_warehouseweapon.weapon_id = app00_reg_log_weapon.weapon_id AND
+                      app00_reg_log_warehouse.warehouse_id = app00_reg_log_warehouseweapon.warehouse_id AND
+                      app00_reg_log_warehouse.warehouse_id = %s
+                GROUP BY app00_reg_log_warehouse.warehouse_id, app00_reg_log_warehouse.warehouse_name, weapon_type ;'''
+        cursor.execute(sql, int(warehouse_id))
+        cursor.close()
+        rowslei = cursor.fetchall()  # 获取所有结果
+
         for row in rows:
             print(row)  # 输出每行结果
-        return render(request, 'warehouse.html', {"weapon_list": rows, "admin": admin})
+        return render(request, 'warehouse.html', {"weapon_list": rows,"weapon_leilist": rowslei, "admin": admin})
 
     elif request.method == 'POST':
         admin = request.POST.get('admin')
@@ -124,17 +137,38 @@ def orders(request):
                        app00_reg_log_weapon.weapon_type  as 武器类型,
                        app00_reg_log_weapon.weapon_price as 价格,
                        app00_reg_log_weapon.name         as 武器名称,
-                       app00_reg_log_weapon.src          as 图片连接
+                       app00_reg_log_factoryweapon.factory_id as 工厂号
                 from app00_reg_log_order,
-                     app00_reg_log_weapon
+                     app00_reg_log_weapon,
+                     app00_reg_log_factoryweapon
                 WHERE warehouse_id = %s
-                  and app00_reg_log_order.weapon_id = app00_reg_log_weapon.weapon_id;'''
+                  and app00_reg_log_order.weapon_id = app00_reg_log_weapon.weapon_id
+                  and app00_reg_log_order.weapon_id = app00_reg_log_factoryweapon.weapon_id;'''
         cursor.execute(sql, warehouse_id)
         order_list = cursor.fetchall()
         cursor.close()
         print(order_list)
+
+        cursor = connection.cursor()
+        sql = '''select app00_reg_log_weapon.weapon_type as 武器类型,
+                       COUNT(*) as 武器数量
+                from app00_reg_log_weapon
+                where       app00_reg_log_weapon.weapon_id in
+                (
+                    SELECT app00_reg_log_order.weapon_id
+                    from app00_reg_log_order
+                    where order_date>=CURDATE()-1 AND
+                          order_date < CURDATE() AND
+                          statement = '已处理' and
+                          app00_reg_log_order.warehouse_id = %s
+                    )
+                GROUP BY app00_reg_log_weapon.weapon_type ;'''
+        cursor.execute(sql,warehouse_id)
+        order_jinlist = cursor.fetchall()
+        cursor.close()
         print(admin)
         return render(request, 'admin_orders.html', {'order_list': order_list,
+                                                     'order_jinlist': order_jinlist,
                                                      'admin': admin,
                                                      'warehouse_id': warehouse_id})
 
@@ -166,4 +200,17 @@ def orders(request):
 
 @require_http_methods(['GET', 'POST'])
 def warehouse_info(request):
-    return render(request, 'warehouse_info.html')
+    if request.method == "GET":
+        username = request.GET.get('admin')
+    else:
+        username = request.POST.get('admin')
+    user = username
+    return render(request, 'warehouse_info.html', {"admin": user})
+
+def backA(request):
+    if request.method == "GET":
+        username = request.GET.get('admin')
+    else:
+        username = request.POST.get('admin')
+    user = username
+    return render(request, "admin_main.html", {"admin": user})

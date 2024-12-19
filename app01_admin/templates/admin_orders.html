@@ -48,14 +48,11 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href={% url 'admin_warehouse' %}?admin={{ user }}>仓 库<span class="sr-only">(current)</span></a>
-                </li>
-                <li><a href="{% url 'admin_orders' %}?admin={{ user }}">订 单</a></li>
-
-
+                <li><a href="{% url 'admin_warehouse' %}?admin={{ admin }}">仓 库</a></li>
+                <li><a href="{% url 'admin_orders' %}?admin={{ admin }}">订 单</a></li>
+                <li><a href="{% url 'admin_main' %}?admin={{ admin }}">首 页</a></li>
             </ul>
-            </li>
-            </ul>
+
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/">登出</a></li>
@@ -82,7 +79,9 @@
             <th style="text-align: center">武器类型</th>
             <th style="text-align: center">价格</th>
             <th style="text-align: center">武器名称</th>
+            <th style="text-align: center">工厂号</th>
             <th style="text-align: center">处理</th>
+
         </tr>
         </thead>
 
@@ -104,6 +103,7 @@
                 <td>{{ item.6 }}</td>
                 <td>{{ item.7 }}</td>
                 <td>{{ item.8 }}</td>
+                <td>{{ item.9 }}</td>
                 <td>
                     <button class="btn btn-primary">
                         发货
@@ -116,6 +116,42 @@
             </tbody>
         {% endfor %}
 
+    </table>
+
+    <table class="table table-condensed">
+        <thead>
+        <tr>
+            <th style="text-align: left">订货报表（昨天）</th>
+
+        </tr>
+        <tr>
+            <th style="text-align: center">武器类型</th>
+            <th style="text-align: center">数量</th>
+        </tr>
+        </thead>
+
+        {% if not order_jinlist %}
+            <tbody>
+            <form method="POST" action="orders">
+            <tr>
+            {% csrf_token %}
+                <td>{{ "空" }}</td>
+                <td>{{ "空" }}</td>
+             </tr>
+            </form>
+            </tbody>
+        {% endif %}
+        {% for itemjin in order_jinlist %}
+            <tbody>
+            <form method="POST" action="orders">
+            <tr>
+            {% csrf_token %}
+                <td>{{ itemjin.0 }}</td>
+                <td>{{ itemjin.1 }}</td>
+             </tr>
+            </form>
+            </tbody>
+        {% endfor %}
     </table>
 </div>
 </body>

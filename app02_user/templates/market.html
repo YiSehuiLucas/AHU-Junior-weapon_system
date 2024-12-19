@@ -198,16 +198,15 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 {#                <li class="active"><a href="#">商 城<span class="sr-only">(current)</span></a></li>#}
-                <li><a href="#">商 城</a></li>
-                <li><a href="#">订 单</a></li>
+                <li><a href={% url 'user_market' %}?user={{ user }}>商城</a></li>
+                <li><a href="{% url 'user_orders' %}?user={{ user }}">订单</a></li>
+                <li><a href="{% url 'user_main' %}?user={{ user }}">首页</a></li>
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/">登 出</a></li>
                 <li class="dropdown">
                     <a class="navbar-brand" href="#">个人信息</a>
-            </ul>
-            </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

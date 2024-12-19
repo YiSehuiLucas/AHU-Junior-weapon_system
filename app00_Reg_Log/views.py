@@ -54,7 +54,7 @@ def login(request):
         use = user.check_password(password)
         if use:
             user = username
-            return render(request, "admin_main.html", {"user": user})
+            return render(request, "admin_main.html", {"admin": user})
         else:
             return JsonResponse({"用户名或密码错误": "用户名或密码错误"})
     else:

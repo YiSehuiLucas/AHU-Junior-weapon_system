@@ -43,20 +43,14 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href={% url 'admin_warehouse' %}?admin={{ user }}>仓 库</a></li>
-                <li><a href="{% url 'admin_orders' %}?admin={{ user }}">订 单</a></li>
-                <li><a href="{% url 'warehouse_info' %}?admin={{ user }}">仓 库 信 息</a></li>
-
-                    </ul>
-                </li>
+                <li><a href={% url 'admin_warehouse' %}?admin={{ admin }}>仓 库</a></li>
+                <li><a href="{% url 'admin_orders' %}?admin={{ admin }}">订 单</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/">登出</a></li>
                 <li class="dropdown">
                     <a class="navbar-brand" href="#">个人信息</a>
-            </ul>
-            </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

@@ -281,13 +281,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{% url 'admin_warehouse' %}?admin={{ user }}">仓 库</a>
-                </li>
-                <li><a href="{% url 'admin_orders' %}?admin={{ user }}">订 单</a></li>
-
-
-            </ul>
-            </li>
+                <li><a href="{% url 'admin_warehouse' %}?admin={{ admin }}">仓 库</a></li>
+                <li><a href="{% url 'admin_orders' %}?admin={{ admin }}">订 单</a></li>
+                <li><a href="{% url 'admin_main' %}?admin={{ admin }}">首 页</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -359,6 +355,25 @@
 
 {#武器列表#}
 <div class="product_show">
+    <table class="table table-condensed">
+        <thead>
+        <tr>
+            <th style="text-align: center; height: 20px">武器类型</th>
+            <th style="text-align: center; height: 20px">武器数量</th>
+        </tr>
+        </thead>
+
+        {% for item in weapon_leilist %}
+            <tbody>
+            <td style="height: 10px">
+                <div>{{ item.0 }}</div>
+            </td>
+            <td style="height: 10px">
+                <div>{{ item.1 }}</div>
+            </td>
+            </tbody>
+        {% endfor %}
+    </table>
     <table class="table table-bordered">
         <thead>
         <tr>

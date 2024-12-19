@@ -4,7 +4,9 @@ from django.views.decorators.http import require_http_methods
 import pymysql
 from django.db import connection
 from datetime import datetime
-
+from app00_Reg_Log.models import Users, Admin
+from app00_Reg_Log.models import Weapon
+import random
 
 # Create your views here.
 #
@@ -105,3 +107,37 @@ def orders(request):
             return render(request, '404.html')
 
 
+def back(request):
+    if request.method == "GET":
+        username = request.GET.get('user')
+    else:
+        username = request.POST.get('user')
+    user = Users.objects.filter(user_name=username).first()
+    print(user)
+    gun_list1 = []
+    gun_list2 = []
+    for i in range(3):
+        index = random.randint(1, 30)
+        guns = Weapon.objects.get(weapon_id=index)
+        temp1 = {
+            "name": guns.name,
+            "srd": guns.src,
+            "price": guns.weapon_price,
+            "type": guns.weapon_type
+        }
+        gun_list1.append(temp1)
+
+        index = random.randint(1, 30)
+        guns = Weapon.objects.get(weapon_id=index)
+        temp2 = {
+            "name": guns.name,
+            "srd": guns.src,
+            "price": guns.weapon_price,
+            "type": guns.weapon_type
+        }
+        gun_list2.append(temp2)
+        # print(f"{guns.weapon_id} {guns.weapon_type} {guns.weapon_price} {guns.name} {guns.src}")
+        print(gun_list2)
+        print(gun_list1)
+    user = username
+    return render(request, "user_main.html", {"row1": gun_list1, "row2": gun_list2, "user": user})

@@ -27,10 +27,12 @@ urlpatterns = [
     # app00
     path("", Reg_Log.login),
     path("register", Reg_Log.register),
+    path("user_main", user.back, name="user_main"),
     # app02 user
     path("user/market", user.market, name='user_market'),
     path("user/orders", user.orders, name='user_orders'),
     # app03 admin
+    path("admin_main", admin.backA, name="admin_main"),
     path("admin/warehouse", admin.warehouse, name='admin_warehouse'),
     path("admin/orders", admin.orders, name='admin_orders'),
     path("admin/warehouse/info", admin.warehouse_info, name='warehouse_info'),
